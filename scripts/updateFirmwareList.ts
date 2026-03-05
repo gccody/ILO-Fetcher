@@ -8,7 +8,7 @@ import type {
   ILOFile,
   ILOVerion,
   ReleaseInfo,
-} from "./types";
+} from "../types";
 
 const downloadPath = resolve("./downloads");
 const dataFilePath = resolve("./data.json");

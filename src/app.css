@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* Custom theme colors and styles */
+@theme {
+  --color-hpe-green: #00a651;
+  --color-hpe-orange: #ff8200;
+  --color-hpe-blue: #007db8;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+/* Custom card hover effect */
+.firmware-card {
+  transition: all 0.2s ease-in-out;
+}
+
+.firmware-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+/* Badge styles */
+.badge-critical {
+  @apply bg-red-100 text-red-800 border-red-200;
+}
+
+.badge-recommended {
+  @apply bg-green-100 text-green-800 border-green-200;
+}
+
+.badge-optional {
+  @apply bg-gray-100 text-gray-800 border-gray-200;
+}
+
+.badge-beta {
+  @apply bg-amber-100 text-amber-800 border-amber-200;
+}
+
+.badge-alpha {
+  @apply bg-purple-100 text-purple-800 border-purple-200;
+}
