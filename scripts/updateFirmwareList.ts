@@ -8,10 +8,10 @@ import type {
   ILOFile,
   ILOVerion,
   ReleaseInfo,
-} from "../types";
+} from "../src/types";
 
 const downloadPath = resolve("./downloads");
-const dataFilePath = resolve("./data.json");
+const dataFilePath = resolve("./src/lib/assets/data.json");
 
 if (!existsSync(downloadPath)) {
   mkdirSync(downloadPath, { recursive: true });
@@ -525,7 +525,33 @@ function findMissingVersions(
   return missingVersions;
 }
 
+/**
+ * Sorts the ILO versions (descending) and their internal files
+ * (descending by versionCode).
+ */
+function sortData() {
+  // 1. Sort the top-level ILO versions (High number to Low number)
+  dataFile.ilos.sort((a, b) => {
+    return b.version.localeCompare(a.version, undefined, {
+      numeric: true,
+      sensitivity: "base",
+    });
+  });
+
+  // 2. Sort the files within each ILO version
+  for (const ilo of dataFile.ilos) {
+    ilo.files.sort((a, b) => {
+      return b.releaseInfo.version.versionCode.localeCompare(
+        a.releaseInfo.version.versionCode,
+        undefined,
+        { numeric: true, sensitivity: "base" },
+      );
+    });
+  }
+}
+
 async function saveData() {
+  sortData(); // Ensure data is sorted before writing
   await Bun.write(dataFilePath, JSON.stringify(dataFile, null, 2));
 }
 

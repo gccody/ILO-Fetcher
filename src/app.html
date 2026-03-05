@@ -3,6 +3,16 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			// Prevent flash of wrong theme by reading localStorage before render
+			(function() {
+				const stored = localStorage.getItem('darkMode');
+				const isDark = stored === null ? true : stored === 'true';
+				if (isDark) {
+					document.documentElement.classList.add('dark');
+				}
+			})();
+		</script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
