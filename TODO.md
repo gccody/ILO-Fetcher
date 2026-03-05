@@ -2,14 +2,14 @@
 
 ## Overview
 
-Transform the ilo-fetcher project into a SvelteKit static website that displays firmware information from data.json, with automated daily updates via GitHub Actions.
+Transform the ilo-fetcher project into a SvelteKit static website that displays firmware information from data.json, with automated daily updates via GitHub Actions and deploys to Cloudflare
 
 ## Phase 1: SvelteKit Setup
 
-- [ ] Initialize new SvelteKit project in current directory
-- [ ] Configure static adapter for SSG output
-- [ ] Set up Tailwind CSS for styling
-- [ ] Verify empty static build works
+- [x] Initialize new SvelteKit project in current directory
+- [x] Configure cloudflare adapter for SSG output
+- [x] Set up Tailwind CSS for styling
+- [x] Verify empty static build works
 
 ## Phase 2: Frontend Development
 

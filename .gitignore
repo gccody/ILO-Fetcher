@@ -50,3 +50,8 @@ downloads
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Cloudflare Types
+/worker-configuration.d.ts
+
+chrome/
