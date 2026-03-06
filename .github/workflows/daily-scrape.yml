@@ -27,7 +27,7 @@ jobs:
 
       - name: Install Puppeteer Browsers and System Deps
         # This command identifies the OS and installs the required libraries automatically
-        run: bunx puppeteer browsers install chrome --install-deps
+        run: sudo env "PATH=$PATH" bunx puppeteer browsers install chrome --install-deps
 
       - name: Run Scraper
         run: bun run index.ts
