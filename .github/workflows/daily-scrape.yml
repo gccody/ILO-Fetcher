@@ -29,7 +29,7 @@ jobs:
         run: sudo env "PATH=$PATH" bunx puppeteer browsers install chrome --install-deps
 
       - name: Run Scraper
-        run: bun run scripts\updateFirmwareList.ts
+        run: bun run scripts/updateFirmwareList.ts
 
       - name: Commit and Push changes
         run: |
