@@ -13,11 +13,11 @@ Transform the ilo-fetcher project into a SvelteKit static website that displays 
 
 ## Phase 2: Frontend Development
 
-- [ ] Create main page layout
-- [ ] Build firmware display component
-- [ ] Implement iLO version tabs (ILO1-ILO7)
-- [ ] Add firmware file cards with metadata
-- [ ] Style with responsive design
+- [x] Create main page layout
+- [x] Build firmware display component
+- [x] Implement iLO version tabs (ILO1-ILO7)
+- [x] Add firmware file cards with metadata
+- [x] Style with responsive design
 - [ ] Add search/filter functionality
 - [ ] Implement sort by version/date
 
@@ -30,6 +30,6 @@ Transform the ilo-fetcher project into a SvelteKit static website that displays 
 
 ## Phase 4: Deployment
 
-- [ ] Set up GitHub Pages deployment
+- [ ] Set up Cloudflare Workers deployment
 - [ ] Test CI/CD pipeline
 - [ ] Verify daily updates work correctly
