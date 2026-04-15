@@ -32,5 +32,6 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "sourceMap": true,
+    "types": ["bun"]
   }
 }

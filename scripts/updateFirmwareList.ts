@@ -1,4 +1,4 @@
-import fs, { existsSync, mkdirSync } from "fs";
+import fs, { existsSync, mkdirSync, readFileSync, writeFileSync, unlinkSync, readdirSync } from "fs";
 import path, { resolve } from "path";
 import puppeteer, { Page } from "puppeteer";
 import type {
@@ -17,7 +17,8 @@ if (!existsSync(downloadPath)) {
   mkdirSync(downloadPath, { recursive: true });
 }
 
-const dataFile: Data = await Bun.file(dataFilePath).json();
+// Read data file using Node.js fs
+const dataFile: Data = JSON.parse(readFileSync(dataFilePath, "utf-8"));
 
 async function fetchMissingFirmware(url: string, iloVersion: ILOVerion) {
   console.log("🚀 Launching browser...");
@@ -25,7 +26,13 @@ async function fetchMissingFirmware(url: string, iloVersion: ILOVerion) {
   const browser = await puppeteer.launch({
     headless: true,
     defaultViewport: null,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-gpu",
+      "--enable-features=NetworkService,NetworkServiceInProcess",
+    ],
   });
 
   const page = await browser.newPage();
@@ -94,7 +101,8 @@ async function fetchMissingFirmware(url: string, iloVersion: ILOVerion) {
       continue;
     }
 
-    Bun.file(filePath).delete();
+    // Delete the temporary curl file
+    unlinkSync(filePath);
 
     const iloFile: ILOFile = {
       fileInfo,
@@ -325,28 +333,42 @@ async function downloadFirmwareCurlFile(page: Page, versionInfo: FileVersion) {
   }
 }
 
-async function waitForDownload(downloadPath: string, timeout = 60000) {
-  return new Promise((resolve, reject) => {
-    const timer = setTimeout(() => {
-      watcher.close();
-      reject(new Error("Download timed out"));
-    }, timeout);
+async function waitForDownload(downloadPath: string, timeout = 60000): Promise<string> {
+  const startTime = Date.now();
+  // Get initial files in download directory
+  const initialFiles = new Set(
+    readdirSync(downloadPath).map((f) => path.join(downloadPath, f)),
+  );
 
-    const watcher = fs.watch(downloadPath, (eventType, filename) => {
-      if (
-        filename &&
-        !filename.endsWith(".crdownload") &&
-        !filename.endsWith(".tmp")
-      ) {
-        // Give it a small buffer to ensure the OS has finished flushing the file
-        setTimeout(() => {
-          clearTimeout(timer);
-          watcher.close();
-          resolve(path.join(downloadPath, filename));
-        }, 1000);
+  while (Date.now() - startTime < timeout) {
+    try {
+      const files = readdirSync(downloadPath);
+
+      for (const file of files) {
+        if (
+          file.endsWith(".crdownload") ||
+          file.endsWith(".tmp") ||
+          file.endsWith(".part")
+        ) {
+          continue; // Skip incomplete downloads
+        }
+
+        const fullPath = path.join(downloadPath, file);
+        if (!initialFiles.has(fullPath)) {
+          // Wait a bit to ensure the OS has finished flushing the file
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          return fullPath;
+        }
       }
-    });
-  });
+    } catch (error) {
+      // Directory might not exist yet, ignore and retry
+    }
+
+    // Poll every 500ms
+    await new Promise((resolve) => setTimeout(resolve, 500));
+  }
+
+  throw new Error("Download timed out");
 }
 
 /**
@@ -553,7 +575,7 @@ function sortData() {
 
 async function saveData() {
   sortData(); // Ensure data is sorted before writing
-  await Bun.write(dataFilePath, JSON.stringify(dataFile, null, 2));
+  writeFileSync(dataFilePath, JSON.stringify(dataFile, null, 2));
 }
 
 for (const ilo of dataFile.ilos) {
