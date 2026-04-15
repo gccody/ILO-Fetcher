@@ -1,7 +1,7 @@
 <script lang="ts">
+	import Favicon from '$lib/assets/favicon.svg';
 	import type { ILO, ILOVerion } from '../types';
 	import type { PageData } from './$types';
-	import Favicon from '$lib/assets/favicon.svg';
 
 	let { data }: { data: PageData } = $props();
 
@@ -159,11 +159,11 @@
 		</div>
 	</main>
 
-	<footer class="bg-slate-800 border-t border-slate-700 mt-auto">
+	<!-- <footer class="bg-slate-800 border-t border-slate-700 mt-auto">
 		<div class="max-w-7xl mx-auto px-4 py-6">
 			<p class="text-center text-sm text-slate-400">
 				ILO Firmware Fetcher &copy; {new Date().getFullYear()}
 			</p>
 		</div>
-	</footer>
+	</footer> -->
 </div>
