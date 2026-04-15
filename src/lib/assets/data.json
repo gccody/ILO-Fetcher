@@ -10,6 +10,24 @@
       "files": [
         {
           "fileInfo": {
+            "filename": "ilo7_1.21.00",
+            "filetype": "fwpkg",
+            "filesize": "64 MB",
+            "checksum": "71799f29286663310b70b75ee2fb68e85f6aea1eb08100658af96e950da0658a"
+          },
+          "releaseInfo": {
+            "version": {
+              "versionCode": "1.21.00",
+              "releaseType": "Production"
+            },
+            "releaseDate": "Apr 8, 2026",
+            "upgradeRequirement": "Recommended",
+            "rebootRequirement": false
+          },
+          "downloadUrl": "https://downloads.hpe.com/pub/softlib2/software1/fwpkg-ilo/p467399165/v280449/ilo7_1.21.00.fwpkg"
+        },
+        {
+          "fileInfo": {
             "filename": "ilo7_1.20.00",
             "filetype": "fwpkg",
             "filesize": "64 MB",
@@ -212,6 +230,24 @@
       "version": "ILO6",
       "url": "https://support.hpe.com/connect/s/softwaredetails?language=en_US&collectionId=MTX-994a0b6ce04a44b9&tab=releaseNotes",
       "files": [
+        {
+          "fileInfo": {
+            "filename": "ilo6_175",
+            "filetype": "fwpkg",
+            "filesize": "32 MB",
+            "checksum": "81ab3219d45b8a258d5dd07badd7f07ce86a8aeb789a0ba8c9603dd6d2331bd3"
+          },
+          "releaseInfo": {
+            "version": {
+              "versionCode": "1.75",
+              "releaseType": "Production"
+            },
+            "releaseDate": "Apr 10, 2026",
+            "upgradeRequirement": "Recommended",
+            "rebootRequirement": false
+          },
+          "downloadUrl": "https://downloads.hpe.com/pub/softlib2/software1/fwpkg-ilo/p788720876/v280763/ilo6_175.fwpkg"
+        },
         {
           "fileInfo": {
             "filename": "ilo6_174",
@@ -794,6 +830,24 @@
       "version": "ILO5",
       "url": "https://support.hpe.com/connect/s/softwaredetails?language=en_US&collectionId=MTX-2dc80c4ae4b943fa&tab=releaseNotes",
       "files": [
+        {
+          "fileInfo": {
+            "filename": "ilo5_319",
+            "filetype": "fwpkg",
+            "filesize": "32 MB",
+            "checksum": "c8fc9ea5784c2c296417364c1d916bd5b099dd9d339f1b6d9010c4c6cf0e731b"
+          },
+          "releaseInfo": {
+            "version": {
+              "versionCode": "3.19",
+              "releaseType": "Production"
+            },
+            "releaseDate": "Apr 10, 2026",
+            "upgradeRequirement": "Recommended",
+            "rebootRequirement": false
+          },
+          "downloadUrl": "https://downloads.hpe.com/pub/softlib2/software1/fwpkg-ilo/p991377599/v280759/ilo5_319.fwpkg"
+        },
         {
           "fileInfo": {
             "filename": "ilo5_318",
