@@ -232,6 +232,24 @@
       "files": [
         {
           "fileInfo": {
+            "filename": "ilo6_176",
+            "filetype": "fwpkg",
+            "filesize": "32 MB",
+            "checksum": "752ae14d1ca9add2b7521e4f5ab53b9a867bbf98bbc61f32879dc41d49f0975c"
+          },
+          "releaseInfo": {
+            "version": {
+              "versionCode": "1.76",
+              "releaseType": "Production"
+            },
+            "releaseDate": "May 6, 2026",
+            "upgradeRequirement": "Recommended",
+            "rebootRequirement": false
+          },
+          "downloadUrl": "https://downloads.hpe.com/pub/softlib2/software1/fwpkg-ilo/p788720876/v284075/ilo6_176.fwpkg"
+        },
+        {
+          "fileInfo": {
             "filename": "ilo6_175",
             "filetype": "fwpkg",
             "filesize": "32 MB",
