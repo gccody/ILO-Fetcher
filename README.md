@@ -44,6 +44,32 @@ The script will:
 
 Downloaded firmware files are saved to the `downloads/` directory.
 
+## JSON API
+
+Start the web app with `bun run dev`, then browse the API at
+`http://localhost:5173/api`. All endpoints are read-only, require no
+authentication, and include the file metadata, checksum, release metadata, HPE
+source page, and direct download URL where applicable.
+
+| Endpoint | Description |
+| --- | --- |
+| `GET /api` | API metadata and endpoint discovery |
+| `GET /api/ilos` | Every iLO generation with release counts and latest releases |
+| `GET /api/ilos/latest` | The latest release for every iLO generation |
+| `GET /api/ilos/{version}` | Latest and all previous releases for one generation |
+| `GET /api/ilos/{version}/releases` | Complete release history for one generation |
+| `GET /api/ilos/{version}/latest` | Latest release for one generation |
+| `GET /api/ilos/{version}/releases/{releaseVersion}` | One exact release |
+
+Version parameters are case-insensitive and accept `ILO5`, `ilo5`, or `5`.
+
+For example:
+
+```bash
+curl http://localhost:5173/api/ilos/ILO5/latest
+curl http://localhost:5173/api/ilos/ILO4/releases/2.82
+```
+
 ## Technical Details
 
 - **Runtime**: [Bun](https://bun.com) v1.3.9+
