@@ -119,7 +119,19 @@ async function fetchMissingFirmware(url: string, iloVersion: ILOVerion) {
       return;
     }
 
-    dataFile.ilos[iloIndex]!.files.push(iloFile);
+    const existingFileIndex = dataFile.ilos[iloIndex]!.files.findIndex(
+      (file) =>
+        file.releaseInfo.version.versionCode ===
+        iloFile.releaseInfo.version.versionCode,
+    );
+
+    if (existingFileIndex === -1) {
+      dataFile.ilos[iloIndex]!.files.push(iloFile);
+    } else {
+      // Replace incomplete records that were deliberately retried instead of
+      // creating a second entry for the same firmware version.
+      dataFile.ilos[iloIndex]!.files[existingFileIndex] = iloFile;
+    }
   }
 
   console.log("🏁 Script finished. Closing browser...");
@@ -155,6 +167,37 @@ async function getFileInfo(page: Page): Promise<FileInfo> {
     dataFile.whitelistedFileExtensions,
   );
 
+  // The checksum label and value are rendered independently. Waiting only for
+  // the filename can capture the modal while it contains a label such as
+  // "SHA256" but before the actual hash has appeared.
+  try {
+    await page.waitForFunction(
+      () => {
+        const getSpans = (root: Node | ShadowRoot): HTMLSpanElement[] => {
+          let spans = Array.from((root as HTMLElement).querySelectorAll("span"));
+          const children = Array.from(
+            (root as HTMLElement).querySelectorAll("*"),
+          );
+          for (const child of children) {
+            if (child.shadowRoot) {
+              spans = spans.concat(getSpans(child.shadowRoot));
+            }
+          }
+          return spans;
+        };
+
+        return getSpans(document).some((span) =>
+          /(?:^|[^a-fA-F0-9])[a-fA-F0-9]{64}(?![a-fA-F0-9])/.test(
+            span.textContent || "",
+          ),
+        );
+      },
+      { timeout: 30000 },
+    );
+  } catch {
+    console.warn("Checksum value did not appear before the timeout.");
+  }
+
   // 2. Extract the FileInfo
   return await page.evaluate((extensions) => {
     const getSpans = (root: Node | ShadowRoot): HTMLSpanElement[] => {
@@ -187,18 +230,13 @@ async function getFileInfo(page: Page): Promise<FileInfo> {
       ? sizeMatch.replace(/[()]/g, "").trim()
       : "Unknown";
 
-    // 3. Find Checksum
-    // We look for a span containing 'SHA256' or a 64-character hex string
-    const checksumRow = allTexts.find(
-      (text) => text.includes("SHA256") || /[a-fA-F0-9]{64}/.test(text),
-    );
-
-    let checksum = "Not Found";
-    if (checksumRow) {
-      // This regex looks for exactly 64 hexadecimal characters
-      const hashMatch = checksumRow.match(/[a-fA-F0-9]{64}/);
-      checksum = hashMatch ? hashMatch[0] : "Not Found";
-    }
+    // 3. Find the checksum value itself. HPE can render the "SHA256" label in
+    // one span and the hash in another, so selecting the first label-or-value
+    // match can stop on the label and incorrectly return "Not Found".
+    const hashMatch = allTexts
+      .join("\n")
+      .match(/(?:^|[^a-fA-F0-9])([a-fA-F0-9]{64})(?![a-fA-F0-9])/);
+    const checksum = hashMatch?.[1]?.toLowerCase() || "Not Found";
 
     if (!fullFilename) {
       throw new Error("Could not locate filename in modal");
@@ -535,15 +573,21 @@ function findMissingVersions(
     return fetchedVersions;
   }
 
-  // Get existing version codes from the dataFile
-  const existingVersionCodes = new Set(
-    iloEntry.files.map((file) => file.releaseInfo.version.versionCode),
+  // Keep the stored file so incomplete metadata can be retried and repaired.
+  const existingFiles = new Map(
+    iloEntry.files.map((file) => [
+      file.releaseInfo.version.versionCode,
+      file,
+    ]),
   );
 
-  // Find versions that are not in the dataFile
-  const missingVersions = fetchedVersions.filter(
-    (version) => !existingVersionCodes.has(version.versionCode),
-  );
+  const missingVersions = fetchedVersions.filter((version) => {
+    const existingFile = existingFiles.get(version.versionCode);
+    return (
+      !existingFile ||
+      !/^[a-fA-F0-9]{64}$/.test(existingFile.fileInfo.checksum)
+    );
+  });
 
   return missingVersions;
 }
