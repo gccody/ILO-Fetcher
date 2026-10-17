@@ -10,6 +10,24 @@
       "files": [
         {
           "fileInfo": {
+            "filename": "ilo7_1.25.02",
+            "filetype": "fwpkg",
+            "filesize": "64 MB",
+            "checksum": "efd7dde302eb9b1174d328ba721cda16ff021826cb73d6a7baf80f191fb330c1"
+          },
+          "releaseInfo": {
+            "version": {
+              "versionCode": "1.25.02",
+              "releaseType": "Production"
+            },
+            "releaseDate": "Oct 16, 2026",
+            "upgradeRequirement": "Recommended",
+            "rebootRequirement": false
+          },
+          "downloadUrl": "https://downloads.hpe.com/pub/softlib2/software1/fwpkg-ilo/p467399165/v292684/ilo7_1.25.02.fwpkg"
+        },
+        {
+          "fileInfo": {
             "filename": "ilo7_1.25.01",
             "filetype": "fwpkg",
             "filesize": "64 MB",
