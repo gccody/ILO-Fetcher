@@ -6,7 +6,7 @@
   "ilos": [
     {
       "version": "ILO7",
-      "url": "https://support.hpe.com/connect/s/softwaredetails?language=en_US&collectionId=MTX-50cf5a2572824156&tab=releaseNotes",
+      "url": "https://support.hpe.com/km/software/MTX-50cf5a2572824156",
       "files": [
         {
           "fileInfo": {
@@ -336,8 +336,26 @@
     },
     {
       "version": "ILO6",
-      "url": "https://support.hpe.com/connect/s/softwaredetails?language=en_US&collectionId=MTX-994a0b6ce04a44b9&tab=releaseNotes",
+      "url": "https://support.hpe.com/km/software/MTX-994a0b6ce04a44b9",
       "files": [
+        {
+          "fileInfo": {
+            "filename": "ilo6_180",
+            "filetype": "fwpkg",
+            "filesize": "32 MB",
+            "checksum": "363496d37f9b22a610202aee28f320a0fd39098ca9e6300625a7dff0de4a2390"
+          },
+          "releaseInfo": {
+            "version": {
+              "versionCode": "1.80",
+              "releaseType": "Production"
+            },
+            "releaseDate": "Nov 21, 2026",
+            "upgradeRequirement": "Recommended",
+            "rebootRequirement": false
+          },
+          "downloadUrl": "https://downloads.hpe.com/pub/softlib2/software1/fwpkg-ilo/p788720876/v291875/ilo6_180.fwpkg"
+        },
         {
           "fileInfo": {
             "filename": "ilo6_179",
@@ -1008,8 +1026,26 @@
     },
     {
       "version": "ILO5",
-      "url": "https://support.hpe.com/connect/s/softwaredetails?language=en_US&collectionId=MTX-2dc80c4ae4b943fa&tab=releaseNotes",
+      "url": "https://support.hpe.com/km/software/MTX-2dc80c4ae4b943fa",
       "files": [
+        {
+          "fileInfo": {
+            "filename": "ilo5_323",
+            "filetype": "fwpkg",
+            "filesize": "32 MB",
+            "checksum": "3cdd69c6bf649503f446c11d8dc52dc7cb15eac916217b83b194b32f886c6403"
+          },
+          "releaseInfo": {
+            "version": {
+              "versionCode": "3.23",
+              "releaseType": "Production"
+            },
+            "releaseDate": "Nov 21, 2026",
+            "upgradeRequirement": "Recommended",
+            "rebootRequirement": false
+          },
+          "downloadUrl": "https://downloads.hpe.com/pub/softlib2/software1/fwpkg-ilo/p991377599/v291871/ilo5_323.fwpkg"
+        },
         {
           "fileInfo": {
             "filename": "ilo5_322",
@@ -1627,6 +1663,24 @@
             "filename": "ilo5_278",
             "filetype": "fwpkg",
             "filesize": "32 MB",
+            "checksum": "6ae5031a4620be4254de0d7b25d64e49aa98ebd3ac4ef5959e07b87cb41519dd"
+          },
+          "releaseInfo": {
+            "version": {
+              "versionCode": "2.78",
+              "releaseType": "Production"
+            },
+            "releaseDate": "Dec 24, 2022",
+            "upgradeRequirement": "Recommended",
+            "rebootRequirement": false
+          },
+          "downloadUrl": "https://downloads.hpe.com/pub/softlib2/software1/fwpkg-ilo/p991377599/v217404/ilo5_278.fwpkg"
+        },
+        {
+          "fileInfo": {
+            "filename": "ilo5_278",
+            "filetype": "fwpkg",
+            "filesize": "32 MB",
             "checksum": "440408093b459ebbb2858da834da7f0921c3c69e03281bb1d907413aa48783bf"
           },
           "releaseInfo": {
@@ -1657,24 +1711,6 @@
             "rebootRequirement": false
           },
           "downloadUrl": "https://downloads.hpe.com/pub/softlib2/software1/fwpkg-ilo/p991377599/v227209/ilo5_278.fwpkg"
-        },
-        {
-          "fileInfo": {
-            "filename": "ilo5_278",
-            "filetype": "fwpkg",
-            "filesize": "32 MB",
-            "checksum": "6ae5031a4620be4254de0d7b25d64e49aa98ebd3ac4ef5959e07b87cb41519dd"
-          },
-          "releaseInfo": {
-            "version": {
-              "versionCode": "2.78",
-              "releaseType": "Production"
-            },
-            "releaseDate": "Dec 24, 2022",
-            "upgradeRequirement": "Recommended",
-            "rebootRequirement": false
-          },
-          "downloadUrl": "https://downloads.hpe.com/pub/softlib2/software1/fwpkg-ilo/p991377599/v217404/ilo5_278.fwpkg"
         },
         {
           "fileInfo": {
@@ -2382,7 +2418,7 @@
     },
     {
       "version": "ILO4",
-      "url": "https://support.hpe.com/connect/s/softwaredetails?language=en_US&collectionId=MTX-d8701885e8a84180&tab=releaseNotes",
+      "url": "https://support.hpe.com/km/software/MTX-d8701885e8a84180",
       "files": [
         {
           "fileInfo": {
@@ -2584,24 +2620,6 @@
         },
         {
           "fileInfo": {
-            "filename": "CP040550",
-            "filetype": "scexe",
-            "filesize": "13 MB",
-            "checksum": "493ffe2f7a1474cdef13dd7ff92dbd6131b356f8bd1b8dde4443c02301deddc1"
-          },
-          "releaseInfo": {
-            "version": {
-              "versionCode": "2.70",
-              "releaseType": "Beta"
-            },
-            "releaseDate": "Sep 9, 2019",
-            "upgradeRequirement": "Recommended",
-            "rebootRequirement": false
-          },
-          "downloadUrl": "https://downloads.hpe.com/pub/softlib2/software1/sc-linux-fw-ilo/p192122427/v169006/CP040550.scexe"
-        },
-        {
-          "fileInfo": {
             "filename": "CP037959",
             "filetype": "scexe",
             "filesize": "13 MB",
@@ -2617,6 +2635,24 @@
             "rebootRequirement": false
           },
           "downloadUrl": "https://downloads.hpe.com/pub/softlib2/software1/sc-linux-fw-ilo/p192122427/v158634/CP037959.scexe"
+        },
+        {
+          "fileInfo": {
+            "filename": "CP040550",
+            "filetype": "scexe",
+            "filesize": "13 MB",
+            "checksum": "493ffe2f7a1474cdef13dd7ff92dbd6131b356f8bd1b8dde4443c02301deddc1"
+          },
+          "releaseInfo": {
+            "version": {
+              "versionCode": "2.70",
+              "releaseType": "Beta"
+            },
+            "releaseDate": "Sep 9, 2019",
+            "upgradeRequirement": "Recommended",
+            "rebootRequirement": false
+          },
+          "downloadUrl": "https://downloads.hpe.com/pub/softlib2/software1/sc-linux-fw-ilo/p192122427/v169006/CP040550.scexe"
         },
         {
           "fileInfo": {
@@ -3090,7 +3126,7 @@
     },
     {
       "version": "ILO3",
-      "url": "https://support.hpe.com/connect/s/softwaredetails?language=en_US&collectionId=MTX-588efdaa80f74606&tab=releaseNotes",
+      "url": "https://support.hpe.com/km/software/MTX-588efdaa80f74606",
       "files": [
         {
           "fileInfo": {
@@ -3546,7 +3582,7 @@
     },
     {
       "version": "ILO2",
-      "url": "https://support.hpe.com/connect/s/softwaredetails?language=en_US&collectionId=MTX-UNITY_C9270&tab=releaseNotes",
+      "url": "https://support.hpe.com/km/software/MTX-UNITY_C9270",
       "files": [
         {
           "fileInfo": {
@@ -4308,7 +4344,7 @@
     },
     {
       "version": "ILO1",
-      "url": "https://support.hpe.com/connect/s/softwaredetails?language=en_US&collectionId=MTX-UNITY_C8322&tab=releaseNotes",
+      "url": "https://support.hpe.com/km/software/MTX-UNITY_C8322",
       "files": [
         {
           "fileInfo": {
